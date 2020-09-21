@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: auto;
+  background-color: black;
+  opacity:0.6;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px; 
+}
+
+.navbar a:hover {
+
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
+
+
+.camera-movement{ 
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lights-button{
+	float: right;
+}
+
+i.fa {
+  display: inline-block;
+  border-radius: 60px;
+  box-shadow: 0px 0px 2px #888;
+  padding: 0.5em 0.6em;
+  
+
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%
+}
+
+button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+	
+//CSS
+.camera-bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+
+    /* Full height */
+  height: 100%;
+
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.top-right-logo {
+  position: absolute;
+  top: 3%;
+  left: 2%;
+  font-size: 38px;
+  color: white;
+  opacity: 0.5;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+}
+
+
+</style>
+</head>
+
+<title>Make - PiStream</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body>
+
+<div class="main" id="newpost">
+  <img  class="camera-bg" style="width: 100%; height:80%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
+  <!--<img  class="camera-bg" style="width: 100%; height:80%; background-attachment: fixed;" id="bg" class="center" src="https://www.psdbox.com/wp-content/uploads/2011/01/security-camera-photoshop-effect.jpg">-->
+     
+</div>
+
+  <div class="top-right-logo">
+  	<a></a>Raspberry Pi - Camera Stream </a>
+  </div>
+
+
+<div class="navbar">
+
+    <div class="ignoreCall">
+          <a id=decline class="but_def">
+              <button id="button"> 
+                  <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
+              </button>
+         </a>       
+    </div>
+    
+      <form method = "post">
+            
+        <div class="camera-movement">
+
+            <a href=# id=center>
+              <button>                   
+                    <i class="fa fa-camera fa-3x" style="color: white" aria-hidden="true"></i>
+              </button>
+            </a>
+
+        </div>
+    </form>
+
+</div>
+
+
+    
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  
+var button = document.getElementById('button');
+
+button.onclick = function() {
+    var div = document.getElementById('newpost');
+    if (div.style.display !== 'none') {
+        div.style.display = 'none';
+    }
+    else {
+        div.style.display = 'block';
+    }
+};
+</script>
+
+</body>
+</html>
+
