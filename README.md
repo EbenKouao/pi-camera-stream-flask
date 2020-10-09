@@ -10,7 +10,7 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 ```
 
 ## Screenshots
-| ![Setup](img/readme/[].png) | ![Live Pi Camera Stream](img/readme/[].png) |
+| ![Setup](readme/pi-stream-client.jpg) | ![Live Pi Camera Stream](img/readme/pi-stream-screen-capture.jpg) |
 |---|---|
 | Pi Setup | Pi - Live Stream |
 
@@ -20,12 +20,31 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 * Raspberry Pi 4 Camera Module or Pi HQ Camera Module (Newer version)
 * Python 3 recommended.
 
+## Library dependencies
+Install the following dependencies to create camera stream.
+
+```
+bash sudo apt-get update 
+sudo apt-get upgrade
+sudo apt-get install libatlas-base-dev
+sudo apt-get install libjasper-dev
+sudo apt-get install libqtgui4 
+sudo apt-get install libqt4-test
+sudo apt-get install libhdf5-dev
+pip3 install flask
+pip3 install numpy
+pip3 install opencv-contrib-python
+pip3 install imutils
+```
+
+pip3 install opencv-python
+
 ## Step 1 – Cloning Raspberry Pi Camera Stream
 Open up terminal and clone the Camera Stream repo:
 
 ```
 bash cd /home/pi
-git clone []
+git clone https://github.com/EbenKouao/pi-camera-stream-flask.git
 ```
 
 ## Step 2 – Launch Web Stream
