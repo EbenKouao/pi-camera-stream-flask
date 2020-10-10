@@ -24,17 +24,18 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 Install the following dependencies to create camera stream.
 
 ```
-bash sudo apt-get update 
-sudo apt-get upgrade
 sudo apt-get install libatlas-base-dev
 sudo apt-get install libjasper-dev
 sudo apt-get install libqtgui4 
 sudo apt-get install libqt4-test
 sudo apt-get install libhdf5-dev
-pip3 install flask
-pip3 install numpy
-pip3 install opencv-contrib-python
-pip3 install imutils
+
+sudo pip3 install flask
+sudo pip3 install numpy
+sudo pip3 install opencv-contrib-python
+sudo pip3 install imutils
+sudo pip3 install opencv-python
+
 ```
 
 pip3 install opencv-python
@@ -43,7 +44,7 @@ pip3 install opencv-python
 Open up terminal and clone the Camera Stream repo:
 
 ```
-bash cd /home/pi
+cd /home/pi
 git clone https://github.com/EbenKouao/pi-camera-stream-flask.git
 ```
 
@@ -51,8 +52,27 @@ git clone https://github.com/EbenKouao/pi-camera-stream-flask.git
 
 Note: Creating an Autostart of the main.py script is recommended to keep the stream running on bootup.
 ```bash cd modules
-sudo python3 /home/pi/[]/main.py
+sudo python3 /home/pi/pi-camera-stream-flask/main.py
 ```
+
+## Step 3 – Autostart your Pi Stream
+
+Optional: A good idea is running your Pi Camera stream at Pi boot up. This removes the need to re-run the script every time you want to create the stream. 
+You can do this by going adding the boot up code the .bashrc file.
+
+Via GUI - show hidden .bashrc and add the code or access via terminal:
+
+```
+sudo nano /home/pi/.bashrc
+```
+
+Go the end of the and add the following (from above):
+
+```
+sudo python3 /home/pi/pi-camera-stream-flask/main.py
+```
+This would cause the following terminal command to auto-start upon Raspberry Pi boot up. 
+
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
 ![Raspbian Camera Stream Image](img/readme/[].png)
