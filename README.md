@@ -60,7 +60,8 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 Optional: A good idea is running your Pi Camera stream at Pi boot up. This removes the need to re-run the script every time you want to create the stream. 
 You can do this by going adding the boot up code the .bashrc file.
 
-Via GUI - show hidden .bashrc and add the code or access via terminal:
+Via the Desktop GUI - right click in your /home/pi/ directory -> show hidden -> open .bashrc and add the code. 
+Or alternatively access via terminal:
 
 ```
 sudo nano /home/pi/.bashrc
