@@ -61,14 +61,10 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 
 ## Step 3 – Autostart your Pi Stream
 
-Optional: A good idea is running your Pi Camera stream at Pi boot up. This removes the need to re-run the script every time you want to create the stream. 
-You can do this by going adding the boot up code the .bashrc file.
-
-Via the Desktop GUI - right click in your /home/pi/ directory -> show hidden -> open .bashrc and add the code. 
-Or alternatively access via terminal:
+Optional: A good idea is using a Chron tab to make auto start the camera stream at start up of your pi. You will not need to re-run the script every time you want to create the stream. You can do this by going editing the /etc/profile to:
 
 ```
-sudo nano /home/pi/.bashrc
+sudo nano /etc/profile
 ```
 
 Go the end of the and add the following (from above):
@@ -76,7 +72,9 @@ Go the end of the and add the following (from above):
 ```
 sudo python3 /home/pi/pi-camera-stream-flask/main.py
 ```
-This would cause the following terminal command to auto-start upon Raspberry Pi boot up. 
+
+This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH. 
+Note: make sure SSH is enabled.
 
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
