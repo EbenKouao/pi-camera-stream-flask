@@ -18,7 +18,7 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 
 * Raspberry Pi 4, 2GB is recommended for optimal performance. However you can use a Pi 3 or older, you may see a increase in latency.
 * Raspberry Pi 4 Camera Module or Pi HQ Camera Module (Newer version)
-* Python 3 recommended.
+* Python 3 required.
 
 ## Library dependencies
 Install the following dependencies to create camera stream.
