@@ -38,11 +38,7 @@ sudo pip3 install numpy
 sudo pip3 install opencv-contrib-python
 sudo pip3 install imutils
 sudo pip3 install opencv-python
-
-
 ```
-
-pip3 install opencv-python
 
 ## Step 1 – Cloning Raspberry Pi Camera Stream
 Open up terminal and clone the Camera Stream repo:
@@ -78,4 +74,3 @@ Note: make sure SSH is enabled.
 
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
-![Raspbian Camera Stream Image](img/readme/[].png)
