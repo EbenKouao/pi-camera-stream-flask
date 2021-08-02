@@ -24,25 +24,12 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 Install the following dependencies to create camera stream.
 
 ```
-sudo apt-get update 
-sudo apt-get upgrade
+sudo apt update 
+sudo apt upgrade
+sudo apt install libatlas-base-dev libjasper-dev libqtgui4 libqt4-test libhdf5-dev -y
 
-sudo apt-get install libatlas-base-dev
-sudo apt-get install libjasper-dev
-sudo apt-get install libqtgui4 
-sudo apt-get install libqt4-test
-sudo apt-get install libhdf5-dev
-
-sudo pip3 install flask
-sudo pip3 install numpy
-sudo pip3 install opencv-contrib-python
-sudo pip3 install imutils
-sudo pip3 install opencv-python
-
-
+pip3 install -r requirements.txt
 ```
-
-pip3 install opencv-python
 
 ## Step 1 – Cloning Raspberry Pi Camera Stream
 Open up terminal and clone the Camera Stream repo:
