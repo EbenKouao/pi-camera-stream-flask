@@ -8,6 +8,7 @@ MarkupSafe==2.0.1
 numpy==1.21.1
 opencv-contrib-python==4.5.3.56
 opencv-python==4.5.3.56
+picamera==1.13
 typing-extensions==3.10.0.0
 Werkzeug==2.0.1
 zipp==3.5.0
