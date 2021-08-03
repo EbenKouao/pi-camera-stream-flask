@@ -1,0 +1,12 @@
+[Unit]
+Description=Pi Camera Web Server
+AssertPathExists=/opt/pi-camera-stream-flask
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/pi-camera-stream-flask/main.py
+KillMode-process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
