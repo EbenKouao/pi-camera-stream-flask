@@ -4,3 +4,6 @@
 # cache
 __pycache__
 *.pyc
+
+# Mac garbage -- Use Linux!
+.DS_Store
