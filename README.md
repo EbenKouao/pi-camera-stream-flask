@@ -10,7 +10,7 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 ```
 
 ## Screenshots
-| ![Setup](readme/pi-stream-client.jpg) | ![Live Pi Camera Stream](readme/pi-stream-screen-capture.jpg) |
+| ![Setup](docs/pi-stream-client.jpg) | ![Live Pi Camera Stream](docs/pi-stream-screen-capture.jpg) |
 |---|---|
 | Pi Setup | Pi - Live Stream |
 
@@ -18,7 +18,15 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 
 * Raspberry Pi 4, 2GB is recommended for optimal performance. However you can use a Pi 3 or older, you may see a increase in latency.
 * Raspberry Pi 4 Camera Module or Pi HQ Camera Module (Newer version)
-* Python 3 recommended.
+* Python 3.7 (there are dependancy issues with opencv-contrib-python with >3.7)
+* Enable SSH on your pi
+```
+sudo systemctl enable --now ssh
+```
+* If you have created a new user to run this (recommended), ensure they are part of the "video" group
+```
+sudo usermod -aG video <username>
+```
 
 ## Library dependencies
 Install the following dependencies to create camera stream.
@@ -48,7 +56,33 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 
 ## Step 3 – Autostart your Pi Stream
 
-Optional: A good idea is to make the the camera stream auto start at bootup of your pi. You will now not need to re-run the script every time you want to create the stream. You can do this by going editing the /etc/profile to:
+
+### SystemD
+
+The most production-ready way to run this service, is via systemd. There is a sample config file in the docs directory.
+
+There a couple modifications that need to be done:
+
+```
+vim docs/picamera.service
+```
+
+Modify the *AssertPathExists* variable to point to your location of the pi-camera-stream-flask repo
+
+If, like me, you are using pyenv for the virtual env, you will need to modify the ExecStart path to use the shim for your virtualenv. As an example, mine looks like:
+```/home/blair/.pyenv/versions/3.7.4/envs/stream_37/bin/python /opt/pi-camera-stream-flask/main.py```
+
+Once these modifications are done, save the file.
+
+```
+sudo cp docs/picamera.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now picamera
+```
+
+
+### Profile Script
+If you are not a fan of running this via systemd, you can do this by going editing the /etc/profile to:
 
 ```
 sudo nano /etc/profile
@@ -62,6 +96,8 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 
 This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH. 
 Note: make sure SSH is enabled.
+
+
 
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
