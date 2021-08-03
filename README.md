@@ -56,7 +56,33 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 
 ## Step 3 – Autostart your Pi Stream
 
-Optional: A good idea is to make the the camera stream auto start at bootup of your pi. You will now not need to re-run the script every time you want to create the stream. You can do this by going editing the /etc/profile to:
+
+### SystemD
+
+The most production-ready way to run this service, is via systemd. There is a sample config file in the docs directory.
+
+There a couple modifications that need to be done:
+
+```
+vim docs/picamera.service
+```
+
+Modify the *AssertPathExists* variable to point to your location of the pi-camera-stream-flask repo
+
+If, like me, you are using pyenv for the virtual env, you will need to modify the ExecStart path to use the shim for your virtualenv. As an example, mine looks like:
+```/home/blair/.pyenv/versions/3.7.4/envs/stream_37/bin/python /opt/pi-camera-stream-flask/main.py```
+
+Once these modifications are done, save the file.
+
+```
+sudo cp docs/picamera.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now picamera
+```
+
+
+### Profile Script
+If you are not a fan of running this via systemd, you can do this by going editing the /etc/profile to:
 
 ```
 sudo nano /etc/profile
@@ -71,14 +97,7 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH. 
 Note: make sure SSH is enabled.
 
-**Alternate Systemd**
 
-Alternatively, if you want to run a systemd service (the more production-ready way), there is a sample config file in the docs directory. Copy this file to /etc/systemd/system/
-
-```
-sudo systemctl daemon-reload
-sudo systemctl enable --now pi-camera
-```
 
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
