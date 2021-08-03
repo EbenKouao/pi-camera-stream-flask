@@ -23,6 +23,10 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 ```
 sudo systemctl enable --now ssh
 ```
+* If you have created a new user to run this (recommended), ensure they are part of the "video" group
+```
+sudo usermod -aG video <username>
+```
 
 ## Library dependencies
 Install the following dependencies to create camera stream.
@@ -66,6 +70,15 @@ sudo python3 /home/pi/pi-camera-stream-flask/main.py
 
 This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH. 
 Note: make sure SSH is enabled.
+
+**Alternate Systemd**
+
+Alternatively, if you want to run a systemd service (the more production-ready way), there is a sample config file in the docs directory. Copy this file to /etc/systemd/system/
+
+```
+sudo systemctl daemon-reload
+sudo systemctl enable --now pi-camera
+```
 
 ## Download Beta image of Raspberry Pi Camera Stream
 Any troubles installing, try out the already compiled Raspberry Pi (Raspbian OS) Image of [Raspberry Pi Camera Stream](https://smartbuilds.io).
