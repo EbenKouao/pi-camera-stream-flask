@@ -10,7 +10,7 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 ```
 
 ## Screenshots
-| ![Setup](readme/pi-stream-client.jpg) | ![Live Pi Camera Stream](readme/pi-stream-screen-capture.jpg) |
+| ![Setup](docs/pi-stream-client.jpg) | ![Live Pi Camera Stream](docs/pi-stream-screen-capture.jpg) |
 |---|---|
 | Pi Setup | Pi - Live Stream |
 
@@ -18,7 +18,11 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 
 * Raspberry Pi 4, 2GB is recommended for optimal performance. However you can use a Pi 3 or older, you may see a increase in latency.
 * Raspberry Pi 4 Camera Module or Pi HQ Camera Module (Newer version)
-* Python 3 recommended.
+* Python 3.7 (there are dependancy issues with opencv-contrib-python with >3.7)
+* Enable SSH on your pi
+```
+sudo systemctl enable --now ssh
+```
 
 ## Library dependencies
 Install the following dependencies to create camera stream.
