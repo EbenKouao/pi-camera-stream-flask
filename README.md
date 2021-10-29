@@ -11,8 +11,8 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 
 ## Screenshots
 | ![Setup](readme/pi-stream-client.jpg) | ![Live Pi Camera Stream](readme/pi-stream-screen-capture.jpg) |
-|---|---|
-| Pi Setup | Pi - Live Stream |
+| ------------------------------------- | ------------------------------------------------------------- |
+| Pi Setup                              | Pi - Live Stream                                              |
 
 ## Preconditions
 
@@ -42,7 +42,13 @@ sudo pip3 install opencv-python
 
 ```
 
-pip3 install opencv-python
+Note: This installation of opencv may take a while depending on your pi model. 
+
+OpenCV alternate installation (in the event of failed opencv builds):
+
+```
+sudo apt-get install libopencv-dev python3-opencv
+```
 
 ## Step 1 – Cloning Raspberry Pi Camera Stream
 Open up terminal and clone the Camera Stream repo:
