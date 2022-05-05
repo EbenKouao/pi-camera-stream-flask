@@ -25,7 +25,7 @@ body {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px; 
+  font-size: 17px;
 }
 
 .navbar a:hover {
@@ -43,7 +43,7 @@ body {
 }
 
 
-.camera-movement{ 
+.camera-movement{
   float: none;
   position: absolute;
   top: 50%;
@@ -60,7 +60,7 @@ i.fa {
   border-radius: 60px;
   box-shadow: 0px 0px 2px #888;
   padding: 0.5em 0.6em;
-  
+
 
 }
 
@@ -79,12 +79,12 @@ button {
     overflow: hidden;
     outline:none;
 }
-	
+
 //CSS
 .camera-bg {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
+  position: fixed;
+  top: 0;
+  left: 0;
 
   /* Preserve aspet ratio */
   min-width: 100%;
@@ -132,11 +132,11 @@ body {
 <div class="main" id="newpost">
   <img  class="camera-bg" style="width: 100%; height:80%; background-attachment: fixed;" id="bg" class="center" src="{{ url_for('video_feed') }}">
   <!--<img  class="camera-bg" style="width: 100%; height:80%; background-attachment: fixed;" id="bg" class="center" src="https://www.psdbox.com/wp-content/uploads/2011/01/security-camera-photoshop-effect.jpg">-->
-     
+
 </div>
 
   <div class="top-right-logo">
-  	<a></a>Raspberry Pi - Camera Stream </a>
+  	<a></a>Arya Stream </a>
   </div>
 
 
@@ -144,20 +144,29 @@ body {
 
     <div class="ignoreCall">
           <a id=decline class="but_def">
-              <button id="button"> 
+              <button id="button">
                   <i style="background: red; color: white;" class="fa fa-times fa-2x" aria-hidden="true"></i>
               </button>
-         </a>       
+         </a>
+    </div>
+
+    <div class="picture">
+          <a href=# id=take-picture class="picture_class">
+              <button id="take-picture-button" onclick="take_picture()">
+                  <i style="background: blue; color: white;" class="fa fa-camera fa-2x" aria-hidden="true"></i>
+              </button>
+         </a>
     </div>
 
 </div>
 
 
-    
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
-  
+
+// stop stream - called when pressing red X
 var button = document.getElementById('button');
 
 button.onclick = function() {
@@ -169,9 +178,36 @@ button.onclick = function() {
         div.style.display = 'block';
     }
 };
-   
+
+// Take and save a photo, call picture function in main.py
+$(function() {
+  $('a#take-picture').on('click', function(e) {
+    e.preventDefault()
+    $.getJSON('/picture',
+        function(data) {
+      //do nothing
+    });
+    return false;
+  });
+});
+
+</script>
+
+<script type="text/javascript">
+// take picture
+var button = document.getElementById('take-pica-button');
+
+button.onclick = function() {
+    var div = document.getElementById('newpost');
+    if (div.style.display !== 'none') {
+        div.style.display = 'none';
+    }
+    else {
+        div.style.display = 'block';
+    }
+};
+
 </script>
 
 </body>
 </html>
-
