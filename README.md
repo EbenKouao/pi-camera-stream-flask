@@ -6,7 +6,7 @@ Create your own live stream from a Raspberry Pi using the Pi camera module. Buil
 The Pi streams the output of the camera module over the web via Flask. Devices connected to the same network would be able to access the camera stream via
 
 ```
-<raspberry_pi_ip:5000> 
+<raspberry_pi_ip:5000>
 ```
 
 ## Screenshots
@@ -24,12 +24,12 @@ The Pi streams the output of the camera module over the web via Flask. Devices c
 Install the following dependencies to create camera stream.
 
 ```
-sudo apt-get update 
+sudo apt-get update
 sudo apt-get upgrade
 
 sudo apt-get install libatlas-base-dev
 sudo apt-get install libjasper-dev
-sudo apt-get install libqtgui4 
+sudo apt-get install libqtgui4
 sudo apt-get install libqt4-test
 sudo apt-get install libhdf5-dev
 
@@ -39,10 +39,9 @@ sudo pip3 install opencv-contrib-python
 sudo pip3 install imutils
 sudo pip3 install opencv-python
 
-
 ```
 
-Note: This installation of opencv may take a while depending on your pi model. 
+Note: This installation of opencv may take a while depending on your pi model.
 
 OpenCV alternate installation (in the event of failed opencv builds):
 
@@ -79,7 +78,7 @@ Go the end of the and add the following (from above):
 sudo python3 /home/pi/pi-camera-stream-flask/main.py
 ```
 
-This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH. 
+This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH.
 Note: make sure SSH is enabled.
 
 ## More Projects / Next Steps

@@ -3,10 +3,8 @@
 #Desc: This web application serves a motion JPEG stream
 # main.py
 # import the necessary packages
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, send_from_directory
 from camera import VideoCamera
-import time
-import threading
 import os
 
 pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
@@ -30,9 +28,12 @@ def video_feed():
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+# Take a photo when pressing camera button
+@app.route('/picture')
+def take_picture():
+    pi_camera.take_picture()
+    return "None"
+
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', debug=False)
-    
-
-

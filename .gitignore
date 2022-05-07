@@ -44,3 +44,7 @@ dev.env
 #_pycache
 __pycache__/
 
+#image_files
+*.jpg
+*.jpeg
+*.png
