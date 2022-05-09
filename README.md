@@ -82,4 +82,7 @@ This would cause the following terminal command to auto-start each time the Rasp
 Note: make sure SSH is enabled.
 
 ## More Projects / Next Steps
-View more projects that build on the Pi Camera on [smartbuilds.io](https://smartbuilds.io).
+View the latest Build: [Pi Smart Cam with Motion Sensor](https://github.com/EbenKouao/pi-smart-cam)
+
+Alternatively, view more projects that build on the Pi Camera on [smartbuilds.io](https://smartbuilds.io).
+
