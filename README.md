@@ -61,7 +61,7 @@ git clone https://github.com/EbenKouao/pi-camera-stream-flask.git
 
 Note: Creating an Autostart of the main.py script is recommended to keep the stream running on bootup.
 ```bash cd modules
-sudo python3 /home/pi/pi-camera-stream-flask/main.py
+python3 /home/pi/pi-camera-stream-flask/main.py
 ```
 
 ## Step 3 – Autostart your Pi Stream
@@ -75,7 +75,7 @@ sudo nano /etc/profile
 Go the end of the and add the following (from above):
 
 ```
-sudo python3 /home/pi/pi-camera-stream-flask/main.py
+python3 /home/pi/pi-camera-stream-flask/main.py
 ```
 
 This would cause the following terminal command to auto-start each time the Raspberry Pi boots up. This in effect creates a headless setup - which would be accessed via SSH.
