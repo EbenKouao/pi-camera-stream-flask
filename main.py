@@ -12,6 +12,10 @@ pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 # App Globals (do not edit)
 app = Flask(__name__)
 
+def formatFrame(frame):
+    return (b'--frame\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+
 @app.route('/')
 def index():
     return render_template('index.html') #you can customze index.html here
@@ -20,8 +24,8 @@ def gen(camera):
     #get camera frame
     while True:
         frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+        res = formatFrame(frame)
+        yield res
 
 @app.route('/video_feed')
 def video_feed():
@@ -33,6 +37,15 @@ def video_feed():
 def take_picture():
     pi_camera.take_picture()
     return "None"
+
+# Get a single frame
+@app.route('/frame')
+def get_frame():
+    frame = pi_camera.get_frame()
+    res = formatFrame(frame)
+    return Response(res,
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    
 
 if __name__ == '__main__':
 
