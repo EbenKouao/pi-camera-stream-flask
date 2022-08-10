@@ -54,7 +54,6 @@ def get_frame():
     frame.seek(0)
     return send_file(frame, mimetype='image/jpeg')
     
-
 if __name__ == '__main__':
 
     app.run(host='0.0.0.0', debug=False, port=5001)
