@@ -13,7 +13,7 @@ pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
 app = Flask(__name__)
 
 def formatFrame(frame):
-    return (b'--frame\r\n'
+    return (b'--frame.jpg\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 @app.route('/')
@@ -41,12 +41,20 @@ def take_picture():
 # Get a single frame
 @app.route('/frame')
 def get_frame():
+    import io
+    from io import BytesIO
+    from PIL import Image
+    from flask import send_file
+
     frame = pi_camera.get_frame()
-    res = formatFrame(frame)
-    return Response(res,
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    image = Image.open(io.BytesIO(frame))
+    
+    frame = BytesIO()
+    image.save(frame, 'JPEG', quality=100)
+    frame.seek(0)
+    return send_file(frame, mimetype='image/jpeg')
     
 
 if __name__ == '__main__':
 
-    app.run(host='0.0.0.0', debug=False)
+    app.run(host='0.0.0.0', debug=False, port=5001)
