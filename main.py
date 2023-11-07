@@ -47,9 +47,6 @@ def get_frame():
     from PIL import Image
     from flask import send_file
 
-    # The camera object is created only after the client has connected to the server
-    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
-
     frame = pi_camera.get_frame()
     # res = formatFrame(frame)
     # return Response(res,
@@ -68,4 +65,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Webcam demo')
     parser.add_argument('--framerate', required=True, default=1 ,help='Set framerate of the camera')
     framerate = parser.parse_args().framerate
+    
+    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
+
     app.run(host='0.0.0.0', debug=False, port=5001)
