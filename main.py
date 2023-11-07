@@ -7,7 +7,8 @@ from flask import Flask, render_template, Response, request, send_from_directory
 from camera import VideoCamera
 import os
 
-pi_camera = VideoCamera(flip=False) # flip pi camera if upside down.
+framerate = None
+pi_camera = None
 
 # App Globals (do not edit)
 app = Flask(__name__)
@@ -29,6 +30,9 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
+    # The camera object is created only after the client has connected to the server
+    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
+
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -55,5 +59,9 @@ def get_frame():
     return send_file(frame, mimetype='image/jpeg')
     
 if __name__ == '__main__':
+    import argparse
 
+    parser = argparse.ArgumentParser(description='Webcam demo')
+    parser.add_argument('--framerate', required=True, default=1 ,help='Set framerate of the camera')
+    framerate = parser.parse_args().framerate
     app.run(host='0.0.0.0', debug=False, port=5001)
