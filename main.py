@@ -36,8 +36,16 @@ def video_feed():
 # Take a photo when pressing camera button
 @app.route('/picture')
 def take_picture():
-    pi_camera.take_picture()
-    return "None"
+    from io import BytesIO
+    from PIL import Image
+    #pi_camera.take_picture()
+    frame = pi_camera.get_frame()
+    image = Image.open(io.BytesIO(frame))
+    
+    frame = BytesIO()
+    image.save(frame, 'JPEG', quality=100)
+    frame.seek(0)
+    return send_file(frame, mimetype='image/jpeg')
 
 # Get a single frame
 @app.route('/frame')
@@ -63,9 +71,9 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(description='Webcam demo')
-    parser.add_argument('--framerate', required=True, default=1 ,help='Set framerate of the camera')
+    parser.add_argument('--framerate', required=True, default=2 ,help='Set framerate of the camera')
     framerate = parser.parse_args().framerate
-    
-    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
+    pi_camera = VideoCamera(flip=False, framerate=framerate) # flip pi camera if upside down.
+
 
     app.run(host='0.0.0.0', debug=False, port=5001)
