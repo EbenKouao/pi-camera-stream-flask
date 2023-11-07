@@ -30,9 +30,6 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    # The camera object is created only after the client has connected to the server
-    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
-
     return Response(gen(pi_camera),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -50,13 +47,20 @@ def get_frame():
     from PIL import Image
     from flask import send_file
 
+    # The camera object is created only after the client has connected to the server
+    pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
+
     frame = pi_camera.get_frame()
-    image = Image.open(io.BytesIO(frame))
+    res = formatFrame(frame)
+    return Response(res,
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    # old code:
+    # image = Image.open(io.BytesIO(frame))
     
-    frame = BytesIO()
-    image.save(frame, 'JPEG', quality=100)
-    frame.seek(0)
-    return send_file(frame, mimetype='image/jpeg')
+    # frame = BytesIO()
+    # image.save(frame, 'JPEG', quality=100)
+    # frame.seek(0)
+    # return send_file(frame, mimetype='image/jpeg')
     
 if __name__ == '__main__':
     import argparse
