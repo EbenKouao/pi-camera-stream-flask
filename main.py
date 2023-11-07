@@ -51,16 +51,16 @@ def get_frame():
     pi_camera = VideoCamera(flip=False, framerate=parser.parse_args().framerate) # flip pi camera if upside down.
 
     frame = pi_camera.get_frame()
-    res = formatFrame(frame)
-    return Response(res,
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    # res = formatFrame(frame)
+    # return Response(res,
+    #                 mimetype='multipart/x-mixed-replace; boundary=frame')
     # old code:
-    # image = Image.open(io.BytesIO(frame))
+    image = Image.open(io.BytesIO(frame))
     
-    # frame = BytesIO()
-    # image.save(frame, 'JPEG', quality=100)
-    # frame.seek(0)
-    # return send_file(frame, mimetype='image/jpeg')
+    frame = BytesIO()
+    image.save(frame, 'JPEG', quality=100)
+    frame.seek(0)
+    return send_file(frame, mimetype='image/jpeg')
     
 if __name__ == '__main__':
     import argparse
